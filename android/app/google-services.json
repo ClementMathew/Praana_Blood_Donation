@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "118563119986",
+    "project_id": "praana-61496",
+    "storage_bucket": "praana-61496.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118563119986:android:9b0e3675111fd5715ef3eb",
+        "android_client_info": {
+          "package_name": "com.example.blood_donation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118563119986-d2soj7r9db2qv52851sl2icj2ci81la3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.blood_donation",
+            "certificate_hash": "944aa1b41bb3af11207b4334738f0620999d770c"
+          }
+        },
+        {
+          "client_id": "118563119986-d8n6q9olqgtgd1jbit70h9ef0cc51md7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADfwezjUnc41zZBdldY1xhBOBr_00VcfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118563119986-d8n6q9olqgtgd1jbit70h9ef0cc51md7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TagProvider with ChangeNotifier {
-
   void changeDate(BuildContext context, final controller) async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
@@ -24,8 +23,7 @@ class TagProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void changeMenu()
-  {
+  void changeMenu() {
     notifyListeners();
   }
 }

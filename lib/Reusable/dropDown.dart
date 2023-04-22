@@ -1,21 +1,18 @@
 import 'package:blood_donation/Welcome/RegisterPage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../Color/praanaColor.dart';
 import '../Provider/provider.dart';
 import '../Welcome/WelcomePage.dart';
 
 Widget myDropDown(List<String> lists, BuildContext context) {
-
   bool isGroups;
   var tagProvider = Provider.of<TagProvider>(context);
 
-  if(lists[0] == "A +ve")
-    {
-      isGroups = true;
-    }
-  else{
+  if (lists[0] == "A +ve") {
+    isGroups = true;
+  } else {
     isGroups = false;
   }
 

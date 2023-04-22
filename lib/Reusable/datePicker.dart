@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../Color/praanaColor.dart';
 import '../Provider/provider.dart';
 import '../Welcome/WelcomePage.dart';
 
-Widget myDatePicker(BuildContext context,final controller,String hint)
-{
+Widget myDatePicker(BuildContext context, final controller, String hint) {
   var tagProvider = Provider.of<TagProvider>(context);
 
   return SizedBox(
@@ -22,8 +21,7 @@ Widget myDatePicker(BuildContext context,final controller,String hint)
               }),
           suffixIconColor: theme,
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelStyle: TextStyle(
-              fontSize: 17, color: theme, letterSpacing: .2),
+          labelStyle: TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(7),
               borderSide: BorderSide(color: theme, width: 2)),

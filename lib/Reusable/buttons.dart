@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../Color/praanaColor.dart';
 import '../Welcome/WelcomePage.dart';
 
-Widget loginButton(final page,BuildContext context,String name) {
-
+Widget loginButton(BuildContext context, String name, bool isLogin, final page,
+    Function onTap) {
   return ElevatedButton(
     onPressed: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-          builder: (context) => page));
+      isLogin
+          ? Navigator.push(
+              context, MaterialPageRoute(builder: (context) => page))
+          : onTap();
     },
     style: ElevatedButton.styleFrom(
         backgroundColor: theme,
@@ -21,19 +21,18 @@ Widget loginButton(final page,BuildContext context,String name) {
   );
 }
 
-Widget signUpButton(final page,BuildContext context,String name)
-{
+Widget signUpButton(BuildContext context, String name, bool isLogin, final page,
+    Function onTap) {
   return OutlinedButton(
     onPressed: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => page));
+      isLogin
+          ? Navigator.push(
+              context, MaterialPageRoute(builder: (context) => page))
+          : onTap();
     },
     style: OutlinedButton.styleFrom(
         side: BorderSide(width: 2.0, color: theme),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         fixedSize: Size(width * .74, height * .065)),
     child: Text(name,
         style: TextStyle(
@@ -45,8 +44,7 @@ Widget signUpButton(final page,BuildContext context,String name)
   );
 }
 
-Widget backButton (BuildContext context)
-{
+Widget backButton(BuildContext context) {
   return Align(
     alignment: Alignment.topLeft,
     child: Padding(

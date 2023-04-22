@@ -4,11 +4,13 @@ import 'package:blood_donation/Reusable/buttons.dart';
 import 'package:blood_donation/Reusable/datePicker.dart';
 import 'package:blood_donation/Reusable/dropDown.dart';
 import 'package:blood_donation/Reusable/textFields.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'WelcomePage.dart';
 
- String selectedGroup = "Blood Group";
- String selectedGender = "Gender";
+String selectedGroup = "Blood Group";
+String selectedGender = "Gender";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -39,6 +41,35 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController rePasswordTextController = TextEditingController();
   TextEditingController dateInput = TextEditingController();
   TextEditingController dateInput2 = TextEditingController();
+
+  final CollectionReference user =
+      FirebaseFirestore.instance.collection('Users');
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> updateUserData(String name, String phone, String dob,
+      String bloodGrp, String lastDon, String weight, String gender) async {
+    return await user.doc(_auth.currentUser?.uid).set({
+      'name': name,
+      'phone': phone,
+      'dob': dob,
+      'blood-grp': bloodGrp,
+      'last-donated': lastDon,
+      'weight': weight,
+      'gender': gender,
+    });
+  }
+
+  void addUser() {
+    updateUserData(
+        nameTextController.text,
+        phoneTextController.text,
+        dateInput.text,
+        selectedGroup,
+        dateInput2.text,
+        weightTextController.text,
+        selectedGender);
+  }
 
   @override
   void initState() {
@@ -86,7 +117,27 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                loginButton(const PraanaHome(), context, "Register"),
+                loginButton(context, "Register", false, null, () {
+                  if (passwordTextController.text ==
+                      rePasswordTextController.text) {
+                    _auth.createUserWithEmailAndPassword(
+                      email: emailTextController.text,
+                      password: passwordTextController.text,
+                    )
+                        .then((value) {
+                      addUser();
+                      print("Created New Account");
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PraanaHome()));
+                    }).onError((error, stackTrace) {
+                      print("Error ${error.toString()}");
+                    });
+                  } else {
+                    print("not match");
+                  }
+                }),
                 SizedBox(
                   height: height * .06,
                 )

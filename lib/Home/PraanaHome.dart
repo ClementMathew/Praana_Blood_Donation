@@ -1,4 +1,10 @@
+import 'package:blood_donation/Home/reusableButton.dart';
+import 'package:blood_donation/Welcome/WelcomePage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../Color/praanaColor.dart';
 
 class PraanaHome extends StatefulWidget {
   const PraanaHome({Key? key}) : super(key: key);
@@ -8,8 +14,112 @@ class PraanaHome extends StatefulWidget {
 }
 
 class _PraanaHomeState extends State<PraanaHome> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final CollectionReference user =
+      FirebaseFirestore.instance.collection('Users');
+  late DocumentReference reference = user.doc(auth.currentUser?.uid);
+  late Future<DocumentSnapshot> futureData = reference.get();
+  late Map data;
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: height * .080,
+        title: FutureBuilder<DocumentSnapshot>(
+          future: futureData,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasError) {
+              return Text("Donate Blood Save Life ${snapshot.error}",
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: .5));
+            }
+            if (snapshot.hasData) {
+              DocumentSnapshot documentSnapshot = snapshot.data;
+              Map data = (documentSnapshot.data()) as Map;
+              return Text(
+                "${data['name']}",
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: .5),
+              );
+            }
+            return const Text("Loading...");
+          },
+        ),
+        backgroundColor: theme,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.account_circle_rounded,
+            color: Colors.white,
+            size: 28,
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+                size: 24.0,
+              )),
+          const SizedBox(
+            width: 1,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.white,
+              size: 26,
+            ),
+          )
+        ],
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * .025,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromARGB(100, 233, 233, 233)),
+              height: height * .06,
+              width: width * .9,
+              child: Center(
+                child: Text(
+                  "Blood Groups",
+                  style: TextStyle(
+                      color: theme,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: .5),
+                ),
+              ),
+            ),
+            SizedBox(height: height*.025,),
+            reusableButton(),
+            ElevatedButton(
+              child: const Text("Logout"),
+              onPressed: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  print("Signed Out");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WelcomePage()));
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

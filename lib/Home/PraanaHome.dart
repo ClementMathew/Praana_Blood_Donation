@@ -1,9 +1,9 @@
 import 'package:blood_donation/Home/reusableButton.dart';
+import 'package:blood_donation/Home/studentList.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../Color/praanaColor.dart';
 
 class PraanaHome extends StatefulWidget {
@@ -80,44 +80,76 @@ class _PraanaHomeState extends State<PraanaHome> {
           )
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: height * .025,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(100, 233, 233, 233)),
-              height: height * .06,
-              width: width * .9,
-              child: Center(
-                child: Text(
-                  "Blood Groups",
-                  style: TextStyle(
-                      color: theme,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: .5),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * .025,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color.fromARGB(100, 233, 233, 233)),
+                height: height * .06,
+                width: width * .9,
+                child: Center(
+                  child: Text(
+                    "Blood Groups",
+                    style: TextStyle(
+                        color: theme,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: .5),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: height*.025,),
-            reusableButton(),
-            ElevatedButton(
-              child: const Text("Logout"),
-              onPressed: () {
-                FirebaseAuth.instance.signOut().then((value) {
-                  print("Signed Out");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const WelcomePage()));
-                });
-              },
-            ),
-          ],
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("A +ve",context,const StudentList(name: 'A Positive',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("A -ve",context,const StudentList(name: 'A Negative',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("B +ve",context,const StudentList(name: 'B Positive',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("B -ve",context,const StudentList(name: 'B Negative',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("AB +ve",context,const StudentList(name: 'AB Positive',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("AB -ve",context,const StudentList(name: 'AB Negative',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("O +ve",context,const StudentList(name: 'O Positive',)),
+              SizedBox(
+                height: height * .020,
+              ),
+              reusableButton("O -ve",context,const StudentList(name: 'O Negative',)),
+              ElevatedButton(
+                child: const Text("Logout"),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut().then((value) {
+                    print("Signed Out");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WelcomePage()));
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -42,7 +42,7 @@ Widget myDropDown(List<String> lists, BuildContext context) {
             hint: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(isGroups ? selectedGroup : selectedGender,
-                  style: const TextStyle(color: Colors.black, fontSize: 13)),
+                  style: const TextStyle(color: Colors.black, fontSize: 15)),
             ),
             borderRadius: BorderRadius.circular(20),
             autofocus: true,

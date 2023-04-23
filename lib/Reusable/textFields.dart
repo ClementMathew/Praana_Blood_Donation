@@ -9,7 +9,7 @@ Widget textField(
     child: TextField(
         controller: control,
         obscureText: isPasswordType,
-        style: const TextStyle(fontSize: 13),
+        style: const TextStyle(fontSize: 15),
         decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: name,
@@ -28,7 +28,7 @@ Widget textField(
                 borderRadius: BorderRadius.circular(7),
                 borderSide: BorderSide(color: theme, width: 2)),
             hintText: hint,
-            hintStyle: const TextStyle(color: Colors.black)),
+            hintStyle: const TextStyle(color: Colors.black,fontSize: 15)),
         maxLength: checkLen(hint),
         keyboardType:
             isPasswordType ? TextInputType.visiblePassword : check(hint)),

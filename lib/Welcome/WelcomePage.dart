@@ -1,5 +1,6 @@
 import 'package:blood_donation/Reusable/buttons.dart';
 import 'package:blood_donation/Welcome/LoginPage.dart';
+import 'package:blood_donation/Welcome/OTPPage.dart';
 import 'package:blood_donation/Welcome/RegisterPage.dart';
 import 'package:flutter/material.dart';
 
@@ -36,17 +37,17 @@ class _WelcomePageState extends State<WelcomePage> {
                 SizedBox(
                   height: height * .1,
                 ),
-                loginButton(context, "Login",true,const LoginPage(),(){}),
+                filledButton(context, "Login",true,const LoginPage(),(){}),
                 SizedBox(
                   height: height * .045,
                 ),
-                signUpButton(context, "Sign Up",true,const RegisterPage(),(){}),
+                outlineButton(context, "Sign Up",true,const RegisterPage(),(){}),
                 SizedBox(
                   height: height * .05,
                 ),
                 TextButton(
                   onPressed: () {
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPPage(),));
                   },
                   style: TextButton.styleFrom(fixedSize: const Size(188, 13)),
                   child: const Text('Forgot Password ?',

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Color/praanaColor.dart';
 import '../Welcome/WelcomePage.dart';
 
-Widget loginButton(BuildContext context, String name, bool isLogin, final page,
+Widget filledButton(BuildContext context, String name, bool isLogin, final page,
     Function onTap) {
   return ElevatedButton(
     onPressed: () {
@@ -21,7 +21,7 @@ Widget loginButton(BuildContext context, String name, bool isLogin, final page,
   );
 }
 
-Widget signUpButton(BuildContext context, String name, bool isLogin, final page,
+Widget outlineButton(BuildContext context, String name, bool isLogin, final page,
     Function onTap) {
   return OutlinedButton(
     onPressed: () {

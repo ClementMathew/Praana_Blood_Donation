@@ -117,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                loginButton(context, "Register", false, null, () {
+                filledButton(context, "Register", false, null, () {
                   if (passwordTextController.text ==
                       rePasswordTextController.text) {
                     _auth.createUserWithEmailAndPassword(

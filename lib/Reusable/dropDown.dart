@@ -24,16 +24,16 @@ Widget myDropDown(List<String> lists, BuildContext context) {
         labelText: null,
         labelStyle: TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: theme, width: 2)),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: theme, width: 2)),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: theme, width: 2)),
         disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: theme, width: 2)),
         contentPadding: const EdgeInsets.all(3),
       ),

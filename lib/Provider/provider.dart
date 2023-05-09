@@ -26,4 +26,9 @@ class TagProvider with ChangeNotifier {
   void changeMenu() {
     notifyListeners();
   }
+
+  String changeTest(String test)
+  {
+    return test = "Done";
+  }
 }

@@ -34,9 +34,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: height * .05,
                 ),
                 textField(
-                    false, "Username", "Enter email", emailTextController),
+                    false,false, "Username", "Enter email", emailTextController),
                 SizedBox(height: height * .05),
-                textField(true, "Password", "Enter the password",
+                textField(true,false, "Password", "Enter the password",
                     passwordTextController),
                 SizedBox(
                   height: height * .07,

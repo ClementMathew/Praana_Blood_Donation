@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../Color/praanaColor.dart';
 import '../Welcome/WelcomePage.dart';
 
 Widget textField(
-    bool isPasswordType, String? name, String hint, final control) {
+    bool isPasswordType,bool isPhoneType, String? name, String hint, final control) {
   return SizedBox(
     width: width * .8,
     child: TextField(
+        inputFormatters:isPhoneType ? [FilteringTextInputFormatter.digitsOnly]:null,
         controller: control,
         obscureText: isPasswordType,
         style: const TextStyle(fontSize: 15),
@@ -16,16 +18,16 @@ Widget textField(
             labelStyle:
                 TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: theme, width: 2)),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: theme, width: 2)),
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: theme, width: 2)),
             disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: theme, width: 2)),
             hintText: hint,
             hintStyle: const TextStyle(color: Colors.black,fontSize: 15)),

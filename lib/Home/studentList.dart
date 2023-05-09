@@ -26,7 +26,7 @@ class _StudentListState extends State<StudentList> {
         title: Text(
           widget.name,
           style: const TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 1),
+              fontWeight: FontWeight.bold, fontSize: 20, ),
         ),
         centerTitle: true,
         backgroundColor: theme,

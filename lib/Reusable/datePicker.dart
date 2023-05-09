@@ -23,16 +23,16 @@ Widget myDatePicker(BuildContext context, final controller, String hint) {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: TextStyle(fontSize: 17, color: theme, letterSpacing: .2),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: theme, width: 2)),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: theme, width: 2)),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: theme, width: 2)),
           disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: theme, width: 2)),
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.black,fontSize: 15)),

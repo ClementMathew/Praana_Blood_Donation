@@ -47,8 +47,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> updateUserData(String name, String phone, String dob,
-      String bloodGrp, String lastDon, String weight, String gender) async {
+  Future<void> updateUserData(String name, int phone, DateTime dob,
+      String bloodGrp, DateTime lastDon, String weight, String gender) async {
     return await user.doc(_auth.currentUser?.uid).set({
       'name': name,
       'phone': phone,
@@ -63,10 +63,10 @@ class _RegisterPageState extends State<RegisterPage> {
   void addUser() {
     updateUserData(
         nameTextController.text,
-        phoneTextController.text,
-        dateInput.text,
+        int.parse(phoneTextController.text),
+        DateTime.parse(dateInput.text),
         selectedGroup,
-        dateInput2.text,
+        DateTime.parse(dateInput2.text),
         weightTextController.text,
         selectedGender);
   }
@@ -94,11 +94,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: height * .05,
                 ),
-                textField(false, null, "Name", nameTextController),
+                textField(false,false, null, "Name", nameTextController),
                 SizedBox(height: height * .05),
-                textField(false, null, "Phone Number", phoneTextController),
+                textField(false, true,null, "Phone Number", phoneTextController),
                 SizedBox(height: height * .025),
-                textField(false, null, "Email", emailTextController),
+                textField(false,false, null, "Email", emailTextController),
                 SizedBox(height: height * .05),
                 myDatePicker(context, dateInput, "Date of Birth"),
                 SizedBox(height: height * .05),
@@ -106,14 +106,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: height * .05),
                 myDatePicker(context, dateInput2, "Last Donated"),
                 SizedBox(height: height * .05),
-                textField(false, null, "Weight", weightTextController),
+                textField(false,true, null, "Weight", weightTextController),
                 SizedBox(height: height * .05),
                 myDropDown(gender, context),
                 SizedBox(height: height * .05),
-                textField(true, null, "Password", passwordTextController),
+                textField(true, false,null, "Password", passwordTextController),
                 SizedBox(height: height * .05),
                 textField(
-                    true, null, "Retype Password", rePasswordTextController),
+                    true,false,  null, "Retype Password", rePasswordTextController),
                 SizedBox(
                   height: height * .07,
                 ),

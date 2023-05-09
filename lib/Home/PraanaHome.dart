@@ -1,9 +1,12 @@
-import 'package:blood_donation/HomeReusable/reusableButton.dart';
+import 'package:blood_donation/Home/notification.dart';
+import 'package:blood_donation/Home/profile.dart';
 import 'package:blood_donation/Home/studentList.dart';
+import 'package:blood_donation/HomeReusable/reusableButton.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import '../Color/praanaColor.dart';
 
 class PraanaHome extends StatefulWidget {
@@ -34,7 +37,7 @@ class _PraanaHomeState extends State<PraanaHome> {
                   style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: .5));
+                      ));
             }
             if (snapshot.hasData) {
               DocumentSnapshot documentSnapshot = snapshot.data;
@@ -44,7 +47,7 @@ class _PraanaHomeState extends State<PraanaHome> {
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: .5),
+                    ),
               );
             }
             return const Text("Loading...");
@@ -52,7 +55,13 @@ class _PraanaHomeState extends State<PraanaHome> {
         ),
         backgroundColor: theme,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
+                ));
+          },
           icon: const Icon(
             Icons.account_circle_rounded,
             color: Colors.white,
@@ -61,7 +70,13 @@ class _PraanaHomeState extends State<PraanaHome> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationPage(),
+                    ));
+              },
               icon: const Icon(
                 Icons.notifications,
                 color: Colors.white,
@@ -107,35 +122,75 @@ class _PraanaHomeState extends State<PraanaHome> {
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("A +ve",context,const StudentList(name: 'A Positive',)),
+              reusableButton(
+                  "A +ve",
+                  context,
+                  const StudentList(
+                    name: 'A Positive',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("A -ve",context,const StudentList(name: 'A Negative',)),
+              reusableButton(
+                  "A -ve",
+                  context,
+                  const StudentList(
+                    name: 'A Negative',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("B +ve",context,const StudentList(name: 'B Positive',)),
+              reusableButton(
+                  "B +ve",
+                  context,
+                  const StudentList(
+                    name: 'B Positive',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("B -ve",context,const StudentList(name: 'B Negative',)),
+              reusableButton(
+                  "B -ve",
+                  context,
+                  const StudentList(
+                    name: 'B Negative',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("AB +ve",context,const StudentList(name: 'AB Positive',)),
+              reusableButton(
+                  "AB +ve",
+                  context,
+                  const StudentList(
+                    name: 'AB Positive',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("AB -ve",context,const StudentList(name: 'AB Negative',)),
+              reusableButton(
+                  "AB -ve",
+                  context,
+                  const StudentList(
+                    name: 'AB Negative',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("O +ve",context,const StudentList(name: 'O Positive',)),
+              reusableButton(
+                  "O +ve",
+                  context,
+                  const StudentList(
+                    name: 'O Positive',
+                  )),
               SizedBox(
                 height: height * .020,
               ),
-              reusableButton("O -ve",context,const StudentList(name: 'O Negative',)),
+              reusableButton(
+                  "O -ve",
+                  context,
+                  const StudentList(
+                    name: 'O Negative',
+                  )),
               ElevatedButton(
                 child: const Text("Logout"),
                 onPressed: () {

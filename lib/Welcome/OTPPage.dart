@@ -1,7 +1,9 @@
+import 'package:blood_donation/Provider/provider.dart';
 import 'package:blood_donation/Welcome/forgetPassword.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Color/praanaColor.dart';
 import '../Reusable/buttons.dart';
@@ -51,7 +53,7 @@ class _OTPPageState extends State<OTPPage> {
                         hintText: "Enter the Number",
                         hintStyle:
                             const TextStyle(color: Colors.black, fontSize: 15),
-                        labelText: "Phone number",
+                        labelText: "Phone Number",
                         labelStyle: TextStyle(
                             fontSize: 16, color: theme, letterSpacing: .2),
                         focusedBorder: OutlineInputBorder(
@@ -106,25 +108,26 @@ class _OTPPageState extends State<OTPPage> {
   }
 
   void loginWithPhone() async {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
+    QuerySnapshot snapshot = await user
+        .where('phone',
+            isEqualTo: int.parse(phoneController.text
+                .substring(phoneController.text.length - 10)))
+        .get();
+    if (snapshot != null) {
+      snapshot.docs.forEach((doc) async {
+        await tagprovider.giveUser(doc['email'], doc['password']);
+      });
+    } else {
+      print('Document does not exist');
+    }
     auth.verifyPhoneNumber(
       phoneNumber: phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) async {
-        QuerySnapshot snapshot = await user
-            .where('phone', isEqualTo: int.parse(phoneController.text.substring(phoneController.text.length - 10)))
-            .get();
-        if (snapshot != null) {
-          // Access the data in the document using the snapshot's data property
-          snapshot.docs.forEach((doc) async {
-            await auth
-                .signInWithEmailAndPassword(
-                    email: doc['email'], password: doc['password'])
-                .then((value) {
-              print("You are logged in successfully");
-            });
-          });
-        } else {
-          print('Document does not exist');
-        }
+        await auth.signInWithCredential(credential).then((value) {
+          print("You are logged in successfully by number");
+        });
       },
       verificationFailed: (FirebaseAuthException e) {
         print("Failed");
@@ -139,10 +142,14 @@ class _OTPPageState extends State<OTPPage> {
   }
 
   void verifyOTP() async {
+    var tagprovider = Provider.of<TagProvider>(context, listen: false);
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationID, smsCode: otpController.text);
 
     await auth.signInWithCredential(credential).then((value) {
+
+      auth.signInWithEmailAndPassword(
+          email: tagprovider.getEmail, password: tagprovider.getPassword);
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

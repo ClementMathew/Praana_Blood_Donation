@@ -47,16 +47,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> updateUserData(String name, int phone, DateTime dob,
-      String bloodGrp, DateTime lastDon, String weight, String gender) async {
+  Future<void> updateUserData(String name, int phone,String email, DateTime dob,
+      String bloodGrp, DateTime lastDon, String weight, String gender,String password) async {
     return await user.doc(_auth.currentUser?.uid).set({
       'name': name,
       'phone': phone,
+      'email':email,
       'dob': dob,
       'blood-grp': bloodGrp,
       'last-donated': lastDon,
       'weight': weight,
       'gender': gender,
+      'password':password
     });
   }
 
@@ -64,11 +66,13 @@ class _RegisterPageState extends State<RegisterPage> {
     updateUserData(
         nameTextController.text,
         int.parse(phoneTextController.text),
+        emailTextController.text,
         DateTime.parse(dateInput.text),
         selectedGroup,
         DateTime.parse(dateInput2.text),
         weightTextController.text,
-        selectedGender);
+        selectedGender,
+        passwordTextController.text);
   }
 
   @override
@@ -127,10 +131,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         .then((value) {
                       addUser();
                       print("Created New Account");
-                      Navigator.pushReplacement(
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const PraanaHome()));
+                              builder: (context) => const PraanaHome()),(route) => false);
                     }).onError((error, stackTrace) {
                       print("Error ${error.toString()}");
                     });

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+String theEmail = "";
+String thePassword = "";
+
 class TagProvider with ChangeNotifier {
+  String get getEmail => theEmail;
+
+  String get getPassword => thePassword;
+
   void changeDate(BuildContext context, final controller) async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
@@ -27,8 +34,8 @@ class TagProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String changeTest(String test)
-  {
-    return test = "Done";
+  giveUser(email, password) {
+    theEmail = email;
+    thePassword = password;
   }
 }

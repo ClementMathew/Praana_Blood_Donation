@@ -47,8 +47,8 @@ class _LoginPageState extends State<LoginPage> {
                           email: emailTextController.text,
                           password: passwordTextController.text)
                       .then((value) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const PraanaHome()));
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) => const PraanaHome()),(route) => false);
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });

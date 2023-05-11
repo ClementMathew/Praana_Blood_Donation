@@ -1,9 +1,15 @@
 import 'package:blood_donation/Welcome/WelcomePage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../Color/praanaColor.dart';
 
+final FirebaseAuth auth = FirebaseAuth.instance;
+CollectionReference user = FirebaseFirestore.instance.collection('Users');
+DocumentReference docRef = user.doc(auth.currentUser?.uid);
+
 Widget profileShow(String detail, String content) {
+
   return Padding(
     padding: EdgeInsets.fromLTRB(width * .06, 0, 0, 0),
     child: ListTile(
@@ -14,13 +20,29 @@ Widget profileShow(String detail, String content) {
           letterSpacing: .5),),
       subtitle: Padding(
         padding: const EdgeInsets.fromLTRB(0,5,0,0),
-        child: Text(content,style: const TextStyle(
-            color: Colors.black,
-            fontSize: 17,
-            fontWeight: FontWeight.w800,
-            fontFamily: "IbarraRealNova")),
+        child:  StreamBuilder<DocumentSnapshot>(
+          stream: docRef.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text('Loading...');
+            }
+            if (!snapshot.hasData) {
+              return const Text('No Data found');
+            }
+            DocumentSnapshot docSnapshot = snapshot.data!;
+            String fieldData = (docSnapshot.get(content)).toString();
+            return Text(fieldData,style: const TextStyle(
+                color: Colors.black,
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
+                fontFamily: "IbarraRealNova"),);
+          },
+        )
+        )
       ),
-    ),
   );
 }
 

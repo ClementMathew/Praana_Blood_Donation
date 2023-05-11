@@ -21,14 +21,14 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   List<String> groups = [
-    'A +ve',
-    'A -ve',
-    'B +ve',
-    'B -ve',
-    'O +ve',
-    'O -ve',
-    'AB +ve',
-    'AB -ve',
+    'A Positive',
+    'A Negative',
+    'B Positive',
+    'B Negative',
+    'O Positive',
+    'O Negative',
+    'AB Positive',
+    'AB Negative',
   ];
 
   List<String> gender = ['Male', 'Female'];
@@ -47,8 +47,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> updateUserData(String name, int phone,String email, DateTime dob,
-      String bloodGrp, DateTime lastDon, String weight, String gender,String password) async {
+  Future<void> updateUserData(String name, int phone,String email, String dob,
+      String bloodGrp, String lastDon, String weight, String gender,String password) async {
     return await user.doc(_auth.currentUser?.uid).set({
       'name': name,
       'phone': phone,
@@ -67,9 +67,9 @@ class _RegisterPageState extends State<RegisterPage> {
         nameTextController.text,
         int.parse(phoneTextController.text),
         emailTextController.text,
-        DateTime.parse(dateInput.text),
+        dateInput.text,
         selectedGroup,
-        DateTime.parse(dateInput2.text),
+        dateInput2.text,
         weightTextController.text,
         selectedGender,
         passwordTextController.text);
@@ -79,7 +79,8 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
     selectedGroup = "Blood Group";
     selectedGender = "Gender";
-    dateInput.text = ""; //set the initial value of text field
+    dateInput.text = "";
+    dateInput2.text = "";//set the initial value of text field
     super.initState();
   }
 

@@ -1,4 +1,5 @@
 import 'package:blood_donation/Home/notification.dart';
+import 'package:blood_donation/Home/popUpMenu.dart';
 import 'package:blood_donation/Home/profile.dart';
 import 'package:blood_donation/Home/studentList.dart';
 import 'package:blood_donation/HomeReusable/reusableButton.dart';
@@ -85,14 +86,17 @@ class _PraanaHomeState extends State<PraanaHome> {
           const SizedBox(
             width: 1,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert,
-              color: Colors.white,
-              size: 26,
-            ),
-          )
+          const PopUpMenu(),
+          // IconButton(
+          //   onPressed: () {
+          //
+          //   },
+          //   icon: const Icon(
+          //     Icons.more_vert,
+          //     color: Colors.white,
+          //     size: 26,
+          //   ),
+          // )
         ],
       ),
       body: SingleChildScrollView(
@@ -191,18 +195,6 @@ class _PraanaHomeState extends State<PraanaHome> {
                   const StudentList(
                     name: 'O Negative',
                   )),
-              ElevatedButton(
-                child: const Text("Logout"),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut().then((value) {
-                    print("Signed Out");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const WelcomePage()));
-                  });
-                },
-              ),
             ],
           ),
         ),

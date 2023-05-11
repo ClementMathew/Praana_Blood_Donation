@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
@@ -13,6 +16,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  CollectionReference user = FirebaseFirestore.instance.collection('Users');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,21 +64,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Icon(Icons.add_a_photo,size: width*.15,color: background),
               ),
               const SizedBox(height: 20,),
-              profileShow("Name","Clement Mathew"),
+              profileShow("Name","name"),
               divider(),
-              profileShow("Phone Number","Clement Mathew"),
+              profileShow("Phone Number","phone"),
               divider(),
-              profileShow("Email","Clement Mathew"),
+              profileShow("Email","email"),
               divider(),
-              profileShow("Date of Birth","Clement Mathew"),
+              profileShow("Date of Birth","dob"),
               divider(),
-              profileShow("Blood Group","Clement Mathew"),
+              profileShow("Blood Group","blood-grp"),
               divider(),
-              profileShow("Last Donated","Clement Mathew"),
+              profileShow("Last Donated","last-donated"),
               divider(),
-              profileShow("Weight","Clement Mathew"),
+              profileShow("Weight","weight"),
               divider(),
-              profileShow("Gender","Clement Mathew"),
+              profileShow("Gender","gender"),
               const SizedBox(height: 20,)
             ],
           ),

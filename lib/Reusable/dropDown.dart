@@ -10,7 +10,7 @@ Widget myDropDown(List<String> lists, BuildContext context) {
   bool isGroups;
   var tagProvider = Provider.of<TagProvider>(context);
 
-  if (lists[0] == "A +ve") {
+  if (lists[0] == "A Positive") {
     isGroups = true;
   } else {
     isGroups = false;

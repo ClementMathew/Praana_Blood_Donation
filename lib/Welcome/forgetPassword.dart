@@ -54,7 +54,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 SizedBox(
                   height: height * .05,
                 ),
-                textField(true, false, null, "Enter Password",
+                textField(true, false, null, "New Password",
                     passwordTextController),
                 SizedBox(height: height * .05),
                 textField(true, false, null, "Retype password",
@@ -68,7 +68,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     changePassword(tagprovdier.getEmail,
                         tagprovdier.getPassword, passwordTextController.text);
                   }
-                }),
+                  else{
+                    const snackBar = SnackBar(content: Text("Passwords doesn't match"));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },),
                 SizedBox(
                   height: height * .06,
                 )
@@ -82,10 +86,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
     await currentUser!.reauthenticateWithCredential(cred).then((value) {
       currentUser!.updatePassword(newpassword);
+      const snackBar = SnackBar(content: Text("Password changed successfully"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       updateUser();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomePage()),(route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const WelcomePage()),(route) => false);
     }).catchError((error) {
+      const snackBar = SnackBar(content: Text("You are not registered"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       print(error.toString());
+
     });
   }
 }

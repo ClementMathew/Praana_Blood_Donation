@@ -50,7 +50,7 @@ class _OTPPageState extends State<OTPPage> {
                     style: const TextStyle(fontSize: 15),
                     decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        hintText: "Enter the Number",
+                        hintText: "Enter the Number (with +91)",
                         hintStyle:
                             const TextStyle(color: Colors.black, fontSize: 15),
                         labelText: "Phone Number",
@@ -130,19 +130,27 @@ class _OTPPageState extends State<OTPPage> {
         });
       },
       verificationFailed: (FirebaseAuthException e) {
+        const snackBar = SnackBar(content: Text("Invalid phone number"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         print("Failed");
       },
       codeSent: (String verificationId, int? resendToken) {
+        const snackBar = SnackBar(content: Text("OTP Sent"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         otpVisibility = true;
         verificationID = verificationId;
         setState(() {});
       },
-      codeAutoRetrievalTimeout: (String verificationId) {},
+      codeAutoRetrievalTimeout: (String verificationId) {
+        const snackBar = SnackBar(content: Text("Resend OTP"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
     );
   }
 
   void verifyOTP() async {
     var tagprovider = Provider.of<TagProvider>(context, listen: false);
+
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationID, smsCode: otpController.text);
 
@@ -155,6 +163,9 @@ class _OTPPageState extends State<OTPPage> {
           MaterialPageRoute(
             builder: (context) => ForgotPassword(),
           ));
+    }).onError((error, stackTrace) {
+      const snackBar = SnackBar(content: Text("Invalid OTP"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 }

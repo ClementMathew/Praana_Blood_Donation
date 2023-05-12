@@ -25,10 +25,12 @@ class _PopUpMenuState extends State<PopUpMenu> {
           value: (){
             FirebaseAuth.instance.signOut().then((value) {
               print("Signed Out");
-              Navigator.push(
+              const snackBar = SnackBar(content: Text("Signed Out"));
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WelcomePage()));
+                      builder: (context) => const WelcomePage()),(route) => false);
             });
           },
           child: Row(

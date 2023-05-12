@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: height * .05),
                 textField(false, true,null, "Phone Number", phoneTextController),
                 SizedBox(height: height * .025),
-                textField(false,false, null, "Email", emailTextController),
+                textField(false,false, null, "Email ( College mail )", emailTextController),
                 SizedBox(height: height * .05),
                 myDatePicker(context, dateInput, "Date of Birth"),
                 SizedBox(height: height * .05),
@@ -115,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: height * .05),
                 myDropDown(gender, context),
                 SizedBox(height: height * .05),
-                textField(true, false,null, "Password", passwordTextController),
+                textField(true, false,null, "New Password", passwordTextController),
                 SizedBox(height: height * .05),
                 textField(
                     true,false,  null, "Retype Password", rePasswordTextController),
@@ -124,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 filledButton(context, "Register", false, null, () {
                   if (passwordTextController.text ==
-                      rePasswordTextController.text) {
+                      rePasswordTextController.text && emailTextController.text.contains("@gecwyd.ac.in")) {
                     _auth.createUserWithEmailAndPassword(
                       email: emailTextController.text,
                       password: passwordTextController.text,
@@ -137,10 +137,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           MaterialPageRoute(
                               builder: (context) => const PraanaHome()),(route) => false);
                     }).onError((error, stackTrace) {
-                      print("Error ${error.toString()}");
+                      var snackBar = const SnackBar(content: Text("Password should be at least 6 characters"));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     });
                   } else {
-                    print("not match");
+                    const snackBar = SnackBar(content: Text("Invalid email or Passwords doesn't match"));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 }),
                 SizedBox(

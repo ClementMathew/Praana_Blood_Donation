@@ -33,10 +33,10 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * .05,
                 ),
-                textField(
-                    false,false, "Username", "Enter email", emailTextController),
+                textField(false, false, "Username", "Enter college email",
+                    emailTextController),
                 SizedBox(height: height * .05),
-                textField(true,false, "Password", "Enter the password",
+                textField(true, false, "Password", "Enter the password",
                     passwordTextController),
                 SizedBox(
                   height: height * .07,
@@ -44,13 +44,17 @@ class _LoginPageState extends State<LoginPage> {
                 filledButton(context, "Login", false, null, () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
-                          email: emailTextController.text,
-                          password: passwordTextController.text)
+                          email: emailTextController.text.trim(),
+                          password: passwordTextController.text.trim())
                       .then((value) {
-                    Navigator.pushAndRemoveUntil(context,
-                        MaterialPageRoute(builder: (context) => const PraanaHome()),(route) => false);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PraanaHome()),
+                        (route) => false);
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    const snackBar = SnackBar(content: Text("Invalid Credentials"));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   });
                 }),
                 SizedBox(

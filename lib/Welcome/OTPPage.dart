@@ -26,6 +26,7 @@ class _OTPPageState extends State<OTPPage> {
 
   bool otpVisibility = false;
   String verificationID = "";
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,14 +93,25 @@ class _OTPPageState extends State<OTPPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, otpVisibility ? "Confirm" : "Send OTP",
-                    false, null, () {
-                  if (otpVisibility) {
-                    verifyOTP();
-                  } else {
-                    loginWithPhone();
-                  }
-                }),
+                loading
+                    ? CircularProgressIndicator(
+                        color: theme,
+                      )
+                    : filledButton(
+                        context,
+                        otpVisibility ? "Confirm" : "Send OTP",
+                        false,
+                        null, () async {
+                        setState(() {
+                          loading = true;
+                        });
+
+                        if (otpVisibility) {
+                          verifyOTP();
+                        } else {
+                          loginWithPhone();
+                        }
+                      }),
                 SizedBox(
                   height: height * .06,
                 )
@@ -122,7 +134,7 @@ class _OTPPageState extends State<OTPPage> {
     } else {
       print('Document does not exist');
     }
-    auth.verifyPhoneNumber(
+    await auth.verifyPhoneNumber(
       phoneNumber: phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential).then((value) {
@@ -139,7 +151,9 @@ class _OTPPageState extends State<OTPPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         otpVisibility = true;
         verificationID = verificationId;
-        setState(() {});
+        setState(() {
+            loading = false;
+        });
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         const snackBar = SnackBar(content: Text("Resend OTP"));
@@ -155,7 +169,6 @@ class _OTPPageState extends State<OTPPage> {
         verificationId: verificationID, smsCode: otpController.text);
 
     await auth.signInWithCredential(credential).then((value) {
-
       auth.signInWithEmailAndPassword(
           email: tagprovider.getEmail, password: tagprovider.getPassword);
       Navigator.pushReplacement(

@@ -42,6 +42,8 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController dateInput = TextEditingController();
   TextEditingController dateInput2 = TextEditingController();
 
+  bool loading = false;
+
   final CollectionReference user =
       FirebaseFirestore.instance.collection('Users');
 
@@ -122,10 +124,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, "Register", false, null, () {
+                loading ? CircularProgressIndicator(
+                  color: theme,
+                ):filledButton(context, "Register", false, null, () async {
+                  setState(() {
+                    loading = true;
+                  });
                   if (passwordTextController.text ==
                       rePasswordTextController.text && emailTextController.text.contains("@gecwyd.ac.in")) {
-                    _auth.createUserWithEmailAndPassword(
+                    await _auth.createUserWithEmailAndPassword(
                       email: emailTextController.text,
                       password: passwordTextController.text,
                     )

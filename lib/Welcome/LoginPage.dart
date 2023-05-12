@@ -18,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,8 +43,13 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, "Login", false, null, () {
-                  FirebaseAuth.instance
+                loading? CircularProgressIndicator(
+                  color: theme,
+                ):filledButton(context, "Login", false, null, () async {
+                  setState(() {
+                    loading = true;
+                  });
+                  await FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: emailTextController.text.trim(),
                           password: passwordTextController.text.trim())
@@ -56,6 +63,9 @@ class _LoginPageState extends State<LoginPage> {
                     const snackBar = SnackBar(content: Text("Invalid Credentials"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   });
+                  // setState(() {
+                  //   loading = false;
+                  // });
                 }),
                 SizedBox(
                   height: height * .06,

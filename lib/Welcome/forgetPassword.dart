@@ -20,6 +20,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController rePasswordTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
+  bool loading = false;
+
   final CollectionReference user =
   FirebaseFirestore.instance.collection('Users');
 
@@ -62,7 +64,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 SizedBox(
                   height: height * .07,
                 ),
-                filledButton(context, "Change Password", false, null, () {
+                loading?CircularProgressIndicator(
+                  color: theme,
+                ):filledButton(context, "Change Password", false, null, () {
+                  setState(() {
+                    loading = true;
+                  });
                   if (passwordTextController.text ==
                       rePasswordTextController.text) {
                     changePassword(tagprovdier.getEmail,

@@ -2,6 +2,7 @@ import 'package:blood_donation/Color/praanaColor.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:flutter/material.dart';
 
+
 Widget reusableButton(String group,BuildContext context,final page) {
   return InkWell(
     onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (context) => page,)),
@@ -13,7 +14,7 @@ Widget reusableButton(String group,BuildContext context,final page) {
             color: theme,
             width: 3,
           )),
-      height: height * .07,
+      height: height * .075,
       width: width * .9,
       child: Row(
         children: [
@@ -22,7 +23,7 @@ Widget reusableButton(String group,BuildContext context,final page) {
           ),
           Container(
             width: width * .1,
-            height: height * .055,
+            height: height * .06,
             decoration: BoxDecoration(
                 color: theme,
                 borderRadius: const BorderRadius.only(
@@ -42,7 +43,7 @@ Widget reusableButton(String group,BuildContext context,final page) {
           const Spacer(),
           Container(
             width: width * .1,
-            height: height * .055,
+            height: height * .06,
             decoration: BoxDecoration(
                 color: theme,
                 borderRadius: const BorderRadius.only(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../Color/praanaColor.dart';
 import '../Welcome/WelcomePage.dart';
 
@@ -17,12 +18,12 @@ Widget filledButton(BuildContext context, String name, bool isLogin, final page,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
     child: Text(name,
         style: const TextStyle(
-            fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 18)),
+            fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 19)),
   );
 }
 
-Widget outlineButton(BuildContext context, String name, bool isLogin, final page,
-    Function onTap) {
+Widget outlineButton(BuildContext context, String name, bool isLogin,
+    final page, Function onTap) {
   return OutlinedButton(
     onPressed: () {
       isLogin

@@ -32,79 +32,81 @@ class _StudentListState extends State<StudentList> {
         centerTitle: true,
         backgroundColor: theme,
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: height * .012,
-          ),
-          StreamBuilder(
-            stream: user.where('blood-grp', isEqualTo: widget.name).snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final DocumentSnapshot testSnap = snapshot.data.docs[index];
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(height * .02, height * .01,
-                          height * .02, height * .01),
-                      child: Container(
-                        height: 85,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: theme,
-                              width: 3,
-                            )),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(testSnap.get('name'),
-                                      style: TextStyle(
-                                          color: theme,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w800,
-                                          fontFamily: "IbarraRealNova")),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    "${testSnap.get('gender')} (${testSnap.get('weight')} kg) - ${(DateTime.now().difference(DateTime.parse(testSnap.get('last-donated')))).inDays} Days",
-                                    style: const TextStyle(
-                                        fontSize: 19,
-                                        fontFamily: "IbarraRealNova",
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * .012,
+            ),
+            StreamBuilder(
+              stream: user.where('blood-grp', isEqualTo: widget.name).snapshots(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final DocumentSnapshot testSnap = snapshot.data.docs[index];
+                      return Padding(
+                        padding: EdgeInsets.fromLTRB(height * .02, height * .01,
+                            height * .02, height * .01),
+                        child: Container(
+                          height: 85,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              border: Border.all(
+                                color: theme,
+                                width: 3,
+                              )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(testSnap.get('name'),
+                                        style: TextStyle(
+                                            color: theme,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w800,
+                                            fontFamily: "IbarraRealNova")),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      "${testSnap.get('gender')} (${testSnap.get('weight')} kg) - ${(DateTime.now().difference(DateTime.parse(testSnap.get('last-donated')))).inDays} Days",
+                                      style: const TextStyle(
+                                          fontSize: 19,
+                                          fontFamily: "IbarraRealNova",
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: width * .01),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.phone,
-                                    size: 30,
-                                    color: theme,
-                                  )),
-                            )
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(right: width * .01),
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.phone,
+                                      size: 30,
+                                      color: theme,
+                                    )),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              }
-              return Container();
-            },
-          ),
-        ],
+                      );
+                    },
+                  );
+                }
+                return Container();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

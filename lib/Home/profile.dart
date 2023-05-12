@@ -1,6 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
@@ -16,9 +13,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
-  FirebaseAuth auth = FirebaseAuth.instance;
-  CollectionReference user = FirebaseFirestore.instance.collection('Users');
 
   @override
   Widget build(BuildContext context) {

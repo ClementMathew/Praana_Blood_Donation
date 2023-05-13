@@ -8,6 +8,14 @@ Widget reusableButton(String group,BuildContext context,final page) {
     onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (context) => page,)),
     child: Container(
       decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // shadow color
+              spreadRadius: 2, // how spread the shadow should be
+              blurRadius: 3, // how blurred the shadow should be
+              offset: const Offset(0, 0), // offset of the shadow
+            ),
+          ],
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(

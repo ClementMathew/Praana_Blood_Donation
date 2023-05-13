@@ -53,6 +53,14 @@ class _StudentListState extends State<StudentList> {
                         child: Container(
                           height: 85,
                           decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5), // shadow color
+                                  spreadRadius: 2, // how spread the shadow should be
+                                  blurRadius: 3, // how blurred the shadow should be
+                                  offset: const Offset(0, 0), // offset of the shadow
+                                ),
+                              ],
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
                               border: Border.all(

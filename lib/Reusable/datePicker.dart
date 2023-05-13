@@ -12,7 +12,7 @@ Widget myDatePicker(BuildContext context, final controller, String hint) {
     width: width * .8,
     child: TextField(
       readOnly: true,
-      style: const TextStyle(fontSize: 15),
+      style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
       decoration: InputDecoration(
           suffixIcon: IconButton(
               icon: const Icon(Icons.date_range),
@@ -35,7 +35,7 @@ Widget myDatePicker(BuildContext context, final controller, String hint) {
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: theme, width: 2)),
           hintText: hint,
-          hintStyle: const TextStyle(color: Colors.black,fontSize: 15)),
+          hintStyle: const TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.normal)),
       controller: controller,
     ),
   );

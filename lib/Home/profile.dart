@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../Color/praanaColor.dart';
 import '../HomeReusable/ProfileContainer.dart';
 import '../Welcome/WelcomePage.dart';
-import 'editProfile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -13,7 +12,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,57 +21,69 @@ class _ProfilePageState extends State<ProfilePage> {
           title: const Text(
             "Profile",
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 20, ),
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
           centerTitle: true,
           backgroundColor: theme,
-          actions: [Padding(
-            padding: const EdgeInsets.fromLTRB(0,0,10,0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EditProfile(),
-                    ));
-              },
-              icon: const Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 22,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/edit', arguments: {
+                    'name': editData['name'],
+                    'phone' : editData['phone'],
+                    'dob' : editData['dob'],
+                    'last-donated':editData['last-donated'],
+                    'weight': editData['weight'],
+                    'id':editData['id']
+                  });
+                },
+                icon: const Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                  size: 22,
+                ),
               ),
             ),
-          ),],
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: height*.05,
+                height: height * .05,
               ),
               CircleAvatar(
-                radius: width*.25,
+                radius: width * .25,
                 backgroundColor: theme,
-                child: Icon(Icons.add_a_photo,size: width*.15,color: background),
+                child: Icon(Icons.add_a_photo,
+                    size: width * .15, color: background),
               ),
-              const SizedBox(height: 20,),
-              profileShow("Name","name"),
+              const SizedBox(
+                height: 20,
+              ),
+              profileShow("Name", "name"),
               divider(),
-              profileShow("Phone Number","phone"),
+              profileShow("Phone Number", "phone"),
               divider(),
-              profileShow("Email","email"),
+              profileShow("Email", "email"),
               divider(),
-              profileShow("Date of Birth","dob"),
+              profileShow("Date of Birth", "dob"),
               divider(),
-              profileShow("Blood Group","blood-grp"),
+              profileShow("Blood Group", "blood-grp"),
               divider(),
-              profileShow("Last Donated","last-donated"),
+              profileShow("Last Donated", "last-donated"),
               divider(),
-              profileShow("Weight","weight"),
+              profileShow("Weight", "weight"),
               divider(),
-              profileShow("Gender","gender"),
-              const SizedBox(height: 20,)
+              profileShow("Gender", "gender"),
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
         ));

@@ -62,10 +62,10 @@ class _LoginPageState extends State<LoginPage> {
                   }).onError((error, stackTrace) {
                     const snackBar = SnackBar(content: Text("Invalid Credentials"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      loading = false;
+                    });
                   });
-                  // setState(() {
-                  //   loading = false;
-                  // });
                 }),
                 SizedBox(
                   height: height * .06,

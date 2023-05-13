@@ -78,6 +78,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   else{
                     const snackBar = SnackBar(content: Text("Passwords doesn't match"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      loading = false;
+                    });
                   }
                 },),
                 SizedBox(
@@ -101,7 +104,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       const snackBar = SnackBar(content: Text("You are not registered"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       print(error.toString());
-
+      setState(() {
+        loading = false;
+      });
     });
   }
 }

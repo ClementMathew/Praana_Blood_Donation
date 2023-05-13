@@ -1,3 +1,5 @@
+import 'package:blood_donation/HomeReusable/ProfileContainer.dart';
+import 'package:blood_donation/Welcome/RegisterPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import '../Reusable/buttons.dart';
 import '../Reusable/datePicker.dart';
 import '../Reusable/dropDown.dart';
 import '../Reusable/textFields.dart';
+import '../Welcome/OTPPage.dart';
 import '../Welcome/WelcomePage.dart';
 
 
@@ -18,6 +21,15 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
 
+  @override
+  void initState() {
+    selectedGroup = editData['blood-grp'];
+    selectedGender = editData['gender'];
+    dateInput.text = editData['dob'];
+    dateInput2.text = editData['last-donated'];
+    super.initState();
+  }
+
   TextEditingController nameTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
@@ -26,14 +38,18 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController dateInput = TextEditingController();
   TextEditingController dateInput2 = TextEditingController();
 
-  // void updateUser(docId) {
-  //   final data = {
-  //     'name': testName.text,
-  //     'phone': testPhone.text,
-  //     'letter': selectedLetter
-  //   };
-  //   test.doc(docId).update(data);
-  // }
+  void updateUser(docId) {
+    final data = {
+      'name': nameTextController.text,
+      'phone': phoneTextController.text,
+      'weight': weightTextController.text,
+      'dob': dateInput.text,
+      'last-donated': dateInput2.text,
+      'blood-grp': selectedGroup,
+      'gender': selectedGender
+    };
+    user.doc(docId).update(data);
+  }
 
   bool loading = false;
 
@@ -48,13 +64,16 @@ class _EditProfileState extends State<EditProfile> {
     'AB Negative',
   ];
 
-  String? selectedGender_1;
-  String? selectedGroup_1;
-
   List<String> gender = ['Male', 'Female'];
 
   @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)?.settings.arguments as Map;
+    nameTextController.text = args['name'];
+    phoneTextController.text = args['phone'];
+    weightTextController.text = args['weight'];
+    final docId = args['id'];
 
     return Scaffold(
       appBar: AppBar(
@@ -96,7 +115,8 @@ class _EditProfileState extends State<EditProfile> {
                   setState(() {
                     loading = true;
                   });
-
+                  updateUser(docId);
+                  Navigator.pop(context);
                 }),
                 SizedBox(
                   height: height * .06,

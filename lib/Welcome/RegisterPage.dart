@@ -144,12 +144,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           MaterialPageRoute(
                               builder: (context) => const PraanaHome()),(route) => false);
                     }).onError((error, stackTrace) {
-                      var snackBar = const SnackBar(content: Text("Password should be at least 6 characters"));
+                      var snackBar = const SnackBar(content: Text("Password should be at least 6 characters or Email already taken"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      setState(() {
+                        loading = false;
+                      });
                     });
                   } else {
                     const snackBar = SnackBar(content: Text("Invalid email or Passwords doesn't match"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      loading = false;
+                    });
                   }
                 }),
                 SizedBox(

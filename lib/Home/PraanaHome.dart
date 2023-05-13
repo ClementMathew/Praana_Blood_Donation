@@ -22,29 +22,27 @@ class _PraanaHomeState extends State<PraanaHome> {
   final CollectionReference user =
       FirebaseFirestore.instance.collection('Users');
   late DocumentReference reference = user.doc(auth.currentUser?.uid);
-  late Future<DocumentSnapshot> futureData = reference.get();
-  late Map data;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height * .080,
-        title: FutureBuilder<DocumentSnapshot>(
-          future: futureData,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+        title: StreamBuilder<DocumentSnapshot>(
+          stream: reference.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text("Donate Blood Save Life ${snapshot.error}",
-                  style: const TextStyle(
+              return const Text("Donate Blood Save Life",
+                  style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       ));
             }
             if (snapshot.hasData) {
-              DocumentSnapshot documentSnapshot = snapshot.data;
-              Map data = (documentSnapshot.data()) as Map;
+              DocumentSnapshot docSnapshot = snapshot.data!;
+              String fieldData = (docSnapshot.get('name')).toString();
               return Text(
-                "${data['name']}",
+                fieldData,
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

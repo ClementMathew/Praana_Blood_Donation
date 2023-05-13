@@ -1,3 +1,4 @@
+import 'package:blood_donation/Home/editProfile.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => TagProvider(),
-        child: const MaterialApp(
+        child:  MaterialApp(
+            routes: {
+              '/edit': (context) => const EditProfile(),
+            },
             debugShowCheckedModeBanner: false,
             title: 'Blood Donation',
-            home: WelcomePage()));
+            home: const WelcomePage()));
   }
 }

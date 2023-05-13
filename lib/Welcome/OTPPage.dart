@@ -144,6 +144,9 @@ class _OTPPageState extends State<OTPPage> {
       verificationFailed: (FirebaseAuthException e) {
         const snackBar = SnackBar(content: Text("Invalid phone number"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        setState(() {
+          loading = false;
+        });
         print("Failed");
       },
       codeSent: (String verificationId, int? resendToken) {
@@ -156,8 +159,8 @@ class _OTPPageState extends State<OTPPage> {
         });
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        const snackBar = SnackBar(content: Text("Resend OTP"));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        // const snackBar = SnackBar(content: Text("Resend OTP"));
+        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
     );
   }
@@ -174,11 +177,14 @@ class _OTPPageState extends State<OTPPage> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ForgotPassword(),
+            builder: (context) => const ForgotPassword(),
           ));
     }).onError((error, stackTrace) {
       const snackBar = SnackBar(content: Text("Invalid OTP"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      setState(() {
+        loading = false;
+      });
     });
   }
 }

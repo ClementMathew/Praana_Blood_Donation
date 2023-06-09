@@ -2,6 +2,7 @@ import 'package:blood_donation/HomeReusable/notificationContainer.dart';
 import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
+import '../SplashScreen.dart';
 import '../Welcome/WelcomePage.dart';
 
 class NotificationPage extends StatefulWidget {

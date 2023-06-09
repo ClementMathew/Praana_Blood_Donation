@@ -7,6 +7,7 @@ import 'package:blood_donation/Reusable/textFields.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../SplashScreen.dart';
 import 'WelcomePage.dart';
 
 String selectedGroup = "Blood Group";

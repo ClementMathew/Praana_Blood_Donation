@@ -4,7 +4,7 @@ import 'package:blood_donation/Welcome/OTPPage.dart';
 import 'package:blood_donation/Welcome/RegisterPage.dart';
 import 'package:flutter/material.dart';
 
-var size, height, width;
+import '../SplashScreen.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -16,10 +16,6 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
 
     return SafeArea(
       child: Scaffold(

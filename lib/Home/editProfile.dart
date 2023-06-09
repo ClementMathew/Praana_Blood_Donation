@@ -8,6 +8,7 @@ import '../Reusable/buttons.dart';
 import '../Reusable/datePicker.dart';
 import '../Reusable/dropDown.dart';
 import '../Reusable/textFields.dart';
+import '../SplashScreen.dart';
 import '../Welcome/OTPPage.dart';
 import '../Welcome/WelcomePage.dart';
 

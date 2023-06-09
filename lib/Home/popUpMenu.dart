@@ -1,5 +1,7 @@
+import 'package:blood_donation/Home/AboutPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Welcome/WelcomePage.dart';
 
@@ -33,26 +35,30 @@ class _PopUpMenuState extends State<PopUpMenu> {
                       builder: (context) => const WelcomePage()),(route) => false);
             });
           },
-          child: Row(
-            children: const [Icon(Icons.logout,color: Colors.black),
+          child: const Row(
+            children: [Icon(Icons.logout,color: Colors.black),
               SizedBox(width: 15,),
               Text('Logout',style: TextStyle(fontWeight: FontWeight.w500),),
             ],
           ),
         ),
          PopupMenuItem(
-          value: (){},
-          child: Row(
-            children: const [Icon(Icons.cached,color: Colors.black,),
+          value: (){
+            _launchURL();
+          },
+          child: const Row(
+            children: [Icon(Icons.cached,color: Colors.black,),
               SizedBox(width: 15,),
               Text('Check for Updates',style: TextStyle(fontWeight: FontWeight.w500)),
             ],
           ),
         ),
          PopupMenuItem(
-          value: (){},
-          child: Row(
-            children: const [Icon(Icons.info_outline,color: Colors.black,),
+          value: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage(),));
+          },
+          child: const Row(
+            children: [Icon(Icons.info_outline,color: Colors.black,),
               SizedBox(width: 15,),
               Text('About',style: TextStyle(fontWeight: FontWeight.w500)),
             ],
@@ -60,5 +66,17 @@ class _PopUpMenuState extends State<PopUpMenu> {
         ),
       ],
     );
+  }
+}
+
+_launchURL() async {
+  const url =
+      'https://drive.google.com/drive/folders/1hFXYJVqw4PHz1njvuRjusA3BEJfLVBV1?usp=sharing';
+
+  final uri = Uri.parse(url);
+  if (await canLaunchUrl(uri,)) {
+    await launchUrl(uri,mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch $url';
   }
 }

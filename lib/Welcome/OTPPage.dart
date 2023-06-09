@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../Color/praanaColor.dart';
 import '../Reusable/buttons.dart';
+import '../SplashScreen.dart';
 import 'WelcomePage.dart';
 
 class OTPPage extends StatefulWidget {

@@ -2,6 +2,8 @@ import 'package:blood_donation/Color/praanaColor.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:flutter/material.dart';
 
+import '../SplashScreen.dart';
+
 
 Widget reusableButton(String group,BuildContext context,final page) {
   return InkWell(

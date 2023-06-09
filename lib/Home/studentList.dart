@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Color/praanaColor.dart';
-import '../Welcome/WelcomePage.dart';
+import '../SplashScreen.dart';
 
 class StudentList extends StatefulWidget {
   final String name;
@@ -146,7 +147,18 @@ class _StudentListState extends State<StudentList> {
                                 Padding(
                                   padding: EdgeInsets.only(right: width * .01),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        final Uri url = Uri(
+                                          scheme: 'tel',
+                                          path:
+                                              testSnap.get('phone').toString(),
+                                        );
+                                        if (await canLaunchUrl(url)) {
+                                          await launchUrl(url);
+                                        } else {
+                                          print('Cannot launch this url');
+                                        }
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         size: 30,
@@ -157,8 +169,7 @@ class _StudentListState extends State<StudentList> {
                             ),
                           ),
                         );
-                      }
-                      else{
+                      } else {
                         return Container();
                       }
                     },

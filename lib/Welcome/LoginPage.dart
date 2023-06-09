@@ -5,6 +5,7 @@ import 'package:blood_donation/Reusable/textFields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../SplashScreen.dart';
 import 'WelcomePage.dart';
 
 class LoginPage extends StatefulWidget {

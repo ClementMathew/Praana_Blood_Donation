@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
+import '../SplashScreen.dart';
 import '../Welcome/WelcomePage.dart';
 
 Widget filledButton(BuildContext context, String name, bool isLogin, final page,

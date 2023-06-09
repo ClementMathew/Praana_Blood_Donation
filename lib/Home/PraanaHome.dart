@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
+import '../SplashScreen.dart';
 
 class PraanaHome extends StatefulWidget {
   const PraanaHome({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class PraanaHome extends StatefulWidget {
 }
 
 class _PraanaHomeState extends State<PraanaHome> {
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference user =
       FirebaseFirestore.instance.collection('Users');

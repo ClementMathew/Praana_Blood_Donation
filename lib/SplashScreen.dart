@@ -1,6 +1,7 @@
 
 import 'package:blood_donation/Color/praanaColor.dart';
 import 'package:blood_donation/Home/PraanaHome.dart';
+import 'package:blood_donation/Home/UserHome.dart';
 import 'package:blood_donation/Welcome/LoginPage.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //         .white)); //need it to be transparent in both light&dark themes
       if (FirebaseAuth.instance.currentUser != null) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const PraanaHome()));
+            context, MaterialPageRoute(builder: (_) => const UserHome()));
       } else {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const WelcomePage()));

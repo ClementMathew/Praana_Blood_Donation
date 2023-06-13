@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../Color/praanaColor.dart';
 import '../SplashScreen.dart';
+import 'callProfile.dart';
 
 class StudentList extends StatefulWidget {
   final String name;
@@ -96,76 +97,94 @@ class _StudentListState extends State<StudentList> {
                         return Padding(
                           padding: EdgeInsets.fromLTRB(height * .02,
                               height * .01, height * .02, height * .01),
-                          child: Container(
-                            height: 85,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    // shadow color
-                                    spreadRadius: 2,
-                                    // how spread the shadow should be
-                                    blurRadius: 3,
-                                    // how blurred the shadow should be
-                                    offset: const Offset(
-                                        0, 0), // offset of the shadow
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CallProfilePage(
+                                      fieldName: testSnap.get('name'),
+                                      fieldDob: testSnap.get('dob'),
+                                      fieldLdon: testSnap.get('last-donated'),
+                                      fieldId: testSnap.id
+                                    ),
+                                  ));
+                            },
+                            child: Container(
+                              height: 85,
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      // shadow color
+                                      spreadRadius: 2,
+                                      // how spread the shadow should be
+                                      blurRadius: 3,
+                                      // how blurred the shadow should be
+                                      offset: const Offset(
+                                          0, 0), // offset of the shadow
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: theme,
+                                    width: 3,
+                                  )),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(testSnap.get('name'),
+                                            style: TextStyle(
+                                                color: theme,
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w800,
+                                                fontFamily: "IbarraRealNova")),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          "${testSnap.get('gender')} (${testSnap.get('weight')} kg) - ${(DateTime.now().difference(DateTime.parse(testSnap.get('last-donated')))).inDays} Days",
+                                          style: const TextStyle(
+                                              fontSize: 19,
+                                              fontFamily: "IbarraRealNova",
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
                                   ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(right: width * .01),
+                                    child: IconButton(
+                                        onPressed: () async {
+                                          final Uri url = Uri(
+                                            scheme: 'tel',
+                                            path: testSnap
+                                                .get('phone')
+                                                .toString(),
+                                          );
+                                          if (await canLaunchUrl(url)) {
+                                            await launchUrl(url);
+                                          } else {
+                                            print('Cannot launch this url');
+                                          }
+                                        },
+                                        icon: Icon(
+                                          Icons.phone,
+                                          size: 30,
+                                          color: theme,
+                                        )),
+                                  )
                                 ],
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: theme,
-                                  width: 3,
-                                )),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(testSnap.get('name'),
-                                          style: TextStyle(
-                                              color: theme,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w800,
-                                              fontFamily: "IbarraRealNova")),
-                                      const SizedBox(height: 5),
-                                      Text(
-                                        "${testSnap.get('gender')} (${testSnap.get('weight')} kg) - ${(DateTime.now().difference(DateTime.parse(testSnap.get('last-donated')))).inDays} Days",
-                                        style: const TextStyle(
-                                            fontSize: 19,
-                                            fontFamily: "IbarraRealNova",
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(right: width * .01),
-                                  child: IconButton(
-                                      onPressed: () async {
-                                        final Uri url = Uri(
-                                          scheme: 'tel',
-                                          path:
-                                              testSnap.get('phone').toString(),
-                                        );
-                                        if (await canLaunchUrl(url)) {
-                                          await launchUrl(url);
-                                        } else {
-                                          print('Cannot launch this url');
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.phone,
-                                        size: 30,
-                                        color: theme,
-                                      )),
-                                )
-                              ],
+                              ),
                             ),
                           ),
                         );

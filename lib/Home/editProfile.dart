@@ -1,7 +1,5 @@
 import 'package:blood_donation/HomeReusable/ProfileContainer.dart';
 import 'package:blood_donation/Welcome/RegisterPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Color/praanaColor.dart';
 import '../Reusable/buttons.dart';
@@ -10,7 +8,6 @@ import '../Reusable/dropDown.dart';
 import '../Reusable/textFields.dart';
 import '../SplashScreen.dart';
 import '../Welcome/OTPPage.dart';
-import '../Welcome/WelcomePage.dart';
 
 
 class EditProfile extends StatefulWidget {

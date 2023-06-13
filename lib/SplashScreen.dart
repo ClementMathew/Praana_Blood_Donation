@@ -30,8 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
       //     statusBarColor: Colors
       //         .white)); //need it to be transparent in both light&dark themes
       if (FirebaseAuth.instance.currentUser != null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const UserHome()));
+        if(FirebaseAuth.instance.currentUser?.email == "nss@gecwyd.ac.in"){
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => const PraanaHome()));
+        }else{
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => const UserHome()));
+        }
       } else {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const WelcomePage()));

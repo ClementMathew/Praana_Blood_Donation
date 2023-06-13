@@ -1,4 +1,5 @@
 import 'package:blood_donation/Home/editProfile.dart';
+import 'package:blood_donation/Home/callProfile.dart';
 import 'package:blood_donation/SplashScreen.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'Home/callProfileEdit.dart';
 import 'Provider/provider.dart';
 
 Future<void> main() async {
@@ -40,6 +42,7 @@ class MyApp extends StatelessWidget {
         child:  MaterialApp(
             routes: {
               '/edit': (context) => const EditProfile(),
+              '/call-edit': (context) => const CallEditProfile(),
             },
             debugShowCheckedModeBanner: false,
             title: 'Blood Donation',

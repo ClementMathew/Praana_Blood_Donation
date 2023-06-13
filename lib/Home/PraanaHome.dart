@@ -30,45 +30,11 @@ class _PraanaHomeState extends State<PraanaHome> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height * .080,
-        title: StreamBuilder<DocumentSnapshot>(
-          stream: reference.snapshots(),
-          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return const Text("Donate Blood Save Life",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      ));
-            }
-            if (snapshot.hasData) {
-              DocumentSnapshot docSnapshot = snapshot.data!;
-              String fieldData = (docSnapshot.get('name')).toString();
-              return Text(
-                fieldData,
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    ),
-              );
-            }
-            return const Text("Loading...");
-          },
-        ),
+        title: const Text('National Service Scheme',style: TextStyle(letterSpacing: .5,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),),
         backgroundColor: theme,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
-                ));
-          },
-          icon: const Icon(
-            Icons.account_circle_rounded,
-            color: Colors.white,
-            size: 28,
-          ),
-        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -87,16 +53,6 @@ class _PraanaHomeState extends State<PraanaHome> {
             width: 1,
           ),
           const PopUpMenu(),
-          // IconButton(
-          //   onPressed: () {
-          //
-          //   },
-          //   icon: const Icon(
-          //     Icons.more_vert,
-          //     color: Colors.white,
-          //     size: 26,
-          //   ),
-          // )
         ],
       ),
       body: SingleChildScrollView(

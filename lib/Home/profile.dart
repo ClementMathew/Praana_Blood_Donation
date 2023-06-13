@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../Color/praanaColor.dart';
 import '../HomeReusable/ProfileContainer.dart';
 import '../SplashScreen.dart';
-import '../Welcome/WelcomePage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -58,11 +56,13 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: height * .06,
               ),
-              CircleAvatar(
-                radius: width * .25,
-                backgroundColor: theme,
-                child:
-                Icon(Icons.add_a_photo, size: width * .15, color: Colors.white),
+              Stack(
+                children:[ CircleAvatar(
+                  radius: width * .25,
+                  backgroundColor: theme,
+                  child:
+                  Icon(Icons.person, size: width * .25, color: Colors.white),
+                ),]
               ),
               const SizedBox(
                 height: 20,

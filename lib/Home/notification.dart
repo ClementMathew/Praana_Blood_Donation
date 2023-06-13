@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../Color/praanaColor.dart';
 import '../SplashScreen.dart';
-import '../Welcome/WelcomePage.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);

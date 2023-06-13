@@ -42,7 +42,11 @@ class _UserHomeState extends State<UserHome> {
       int fieldData = (DateTime.now().difference(
           DateTime.parse(snapshot.get('last-donated')))).inDays.toInt();
       setState(() {
-        per = ((fieldData / 90).toDouble());
+        if(fieldData>=90){
+          per = 1;
+        }else{
+          per = ((fieldData / 90).toDouble());
+        }
       });
     } else {
       print('Document does not exist');
@@ -265,11 +269,19 @@ class _UserHomeState extends State<UserHome> {
                               if (snapshot.hasData) {
                                 DocumentSnapshot docSnapshot = snapshot.data!;
                                 int fieldData = (DateTime.now().difference(DateTime.parse(docSnapshot.get('last-donated')))).inDays.toInt();
-                                return Text(
-                                  '${((fieldData/90)*100).toStringAsPrecision(2)}%',
-                                  style:  GoogleFonts.poppins(
-                                      fontWeight: FontWeight.bold, fontSize: 30),
-                                );
+                                if(fieldData>=90){
+                                  return Text(
+                                    '100%',
+                                    style:  GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold, fontSize: 30),
+                                  );
+                                }else{
+                                  return Text(
+                                    '${((fieldData/90)*100).toStringAsPrecision(2)}%',
+                                    style:  GoogleFonts.poppins(
+                                        fontWeight: FontWeight.bold, fontSize: 30),
+                                  );
+                                }
                               }
                               return Text("0%",style:GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold, fontSize: 30),);

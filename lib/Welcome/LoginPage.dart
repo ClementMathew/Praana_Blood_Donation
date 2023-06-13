@@ -5,8 +5,8 @@ import 'package:blood_donation/Reusable/textFields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Home/UserHome.dart';
 import '../SplashScreen.dart';
-import 'WelcomePage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -44,30 +44,41 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: height * .07,
                 ),
-                loading? CircularProgressIndicator(
-                  color: theme,
-                ):filledButton(context, "Login", false, null, () async {
-                  setState(() {
-                    loading = true;
-                  });
-                  await FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: emailTextController.text.trim(),
-                          password: passwordTextController.text.trim())
-                      .then((value) {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PraanaHome()),
-                        (route) => false);
-                  }).onError((error, stackTrace) {
-                    const snackBar = SnackBar(content: Text("Invalid Credentials"));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    setState(() {
-                      loading = false;
-                    });
-                  });
-                }),
+                loading
+                    ? CircularProgressIndicator(
+                        color: theme,
+                      )
+                    : filledButton(context, "Login", false, null, () async {
+                        setState(() {
+                          loading = true;
+                        });
+                        await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: emailTextController.text.trim(),
+                                password: passwordTextController.text.trim())
+                            .then((value) {
+                          if (emailTextController.text == 'nss@gecwyd.ac.in') {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PraanaHome()),
+                                (route) => false);
+                          } else {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const UserHome()),
+                                (route) => false);
+                          }
+                        }).onError((error, stackTrace) {
+                          const snackBar =
+                              SnackBar(content: Text("Invalid Credentials"));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          setState(() {
+                            loading = false;
+                          });
+                        });
+                      }),
                 SizedBox(
                   height: height * .06,
                 )

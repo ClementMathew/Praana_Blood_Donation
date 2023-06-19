@@ -2,7 +2,6 @@
 import 'package:blood_donation/Color/praanaColor.dart';
 import 'package:blood_donation/Home/PraanaHome.dart';
 import 'package:blood_donation/Home/UserHome.dart';
-import 'package:blood_donation/Welcome/LoginPage.dart';
 import 'package:blood_donation/Welcome/WelcomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

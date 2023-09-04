@@ -1,24 +1,12 @@
 # Praana
-The application is crowdsourced and the information is
-accessible by any user. The information on the application (for
-example a landslide) added by one user can be edited or deleted
-by another in the same locality .
 
-check out the deployed version of web [Here](https://youturn.onrender.com)
+A mobile application was made to find blood donors in our college.
+The application was made for National Service Scheme 2023.
+Database connection was performed using Firebase.
 
-## How To Run Web App & Server
-to buld the application use
-```bash
-npm run build
-```
-
-to run the application use
-```bash
-node app
-```
 ## Requirements
-* MongoDB
-* Node JS
+* Firebase
+* Dart
 * Flutter
 
 ## How To Run Flutter App
@@ -32,6 +20,7 @@ to run the application use
 ```bash
 flutter run lib/main.dart
 ```
+`
 
 <p>
 <img src="https://user-images.githubusercontent.com/89939823/235377211-c8bc7fd2-31a8-477e-9f0d-926e565aa6b4.png" width="400">

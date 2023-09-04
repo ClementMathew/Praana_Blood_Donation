@@ -20,14 +20,11 @@ to run the application use
 ```bash
 flutter run lib/main.dart
 ```
-`
 
-<p>
-<img src="https://user-images.githubusercontent.com/89939823/235377211-c8bc7fd2-31a8-477e-9f0d-926e565aa6b4.png" width="400">
-<img src="https://user-images.githubusercontent.com/89939823/235377236-a4f06325-f15c-48c5-89f5-fbf58ff35a18.png" width="400">
-<img src="https://user-images.githubusercontent.com/89939823/235377234-6a68d034-da34-4371-be2f-e2de3de6c14b.png" width="400">
-<img src="https://user-images.githubusercontent.com/89939823/235377230-7bb05bb9-d512-468f-8876-594d38f63569.png" width="400">
-</p>
+![Screenshot 2023-09-01 234634](https://github.com/ClementMathew/Blood_Donation/assets/89939823/1e497b1f-8747-44a2-aa9a-589e43275e02)
+![Screenshot 2023-09-01 234651](https://github.com/ClementMathew/Blood_Donation/assets/89939823/95560b2f-368e-440d-81dd-1f513b7a534d)
+![Screenshot 2023-09-01 234800](https://github.com/ClementMathew/Blood_Donation/assets/89939823/a92eac5b-64a4-4ae9-bead-04c5bca19002)
+![Screenshot 2023-09-01 234910](https://github.com/ClementMathew/Blood_Donation/assets/89939823/6b45a175-8d16-490e-ade2-e531702ee1b2)
 
 
 
